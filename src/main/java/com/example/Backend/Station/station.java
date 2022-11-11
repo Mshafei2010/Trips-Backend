@@ -1,6 +1,7 @@
 package com.example.Backend.Station;
 
 import com.example.Backend.Trip.trip;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,11 +21,11 @@ public class station {
     @Column(name = "station_id")
     long id;
     String name;
-
-    @OneToMany(mappedBy = "fromStation")
+    @JsonIgnore
+    @OneToMany(mappedBy = "fromStation" , fetch = FetchType.LAZY)
     private List<trip> startTrip;
-
-    @OneToMany(mappedBy = "toStation")
+    @JsonIgnore
+    @OneToMany(mappedBy = "toStation", fetch = FetchType.LAZY)
     private List<trip> toTrips;
 
     public station(long id, String name, List<trip> startTrip, List<trip> toTrips) {
@@ -32,6 +33,10 @@ public class station {
         this.name = name;
         this.startTrip = startTrip;
         this.toTrips = toTrips;
+    }
+
+    public station(String name) {
+        this.name=name;
     }
 
     public station() {

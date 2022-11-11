@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/station")
+@CrossOrigin (origins = "http://localhost:4200")
 public class stationControllor {
     private final stationService StationService;
 
@@ -21,23 +22,24 @@ public class stationControllor {
         return StationService.getAll();
     }
 
-    @PostMapping
-    public String registerNewStation(@RequestBody station Station)
+    @PostMapping(path= "{name}")
+    public void registerNewStation(@PathVariable("name") String name)
     {
-        return StationService.addNewStation(Station);
+        station Station = new station(name);
+        StationService.addNewStation(Station);
     }
 
     @DeleteMapping (path= "{id}")
-    public String deleteStation (@PathVariable("id") Long stationid)
+    public void deleteStation (@PathVariable("id") Long stationid)
     {
-        return StationService.deleteStation(stationid);
+        StationService.deleteStation(stationid);
     }
 
     @PutMapping (path = "{id}")
-    public String updateStation (
+    public void updateStation (
             @PathVariable("id") Long id,
             @RequestParam(required = false)String name)
     {
-        return StationService.updateStation(id,name);
+        StationService.updateStation(id,name);
     }
 }
