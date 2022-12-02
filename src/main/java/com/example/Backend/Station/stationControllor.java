@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/station")
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin (origins = "http://host.docker.internal:4200")
 public class stationControllor {
     private final stationService StationService;
 

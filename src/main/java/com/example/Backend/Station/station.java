@@ -28,6 +28,16 @@ public class station {
     @OneToMany(mappedBy = "toStation", fetch = FetchType.LAZY)
     private List<trip> toTrips;
 
+    String location;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public station(long id, String name, List<trip> startTrip, List<trip> toTrips) {
         this.id = id;
         this.name = name;

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/trip")
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin (origins = "http://host.docker.internal:4200")
 public class tripControllor {
 
     private final tripService TripService;
@@ -48,6 +48,11 @@ public class tripControllor {
         TripService.deleteTrip(id);
     }
 
+
+    //this.startDate = startDate;
+    //        this.endDate = endDate;
+    //        this.fromStation = fromStation;
+    //        this.toStation = toStation;
     @PutMapping (path = "{id}")
     public void updateAdmin (
             @PathVariable("id") Long id,
