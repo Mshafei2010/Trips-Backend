@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/admin")
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin (origins = "http://host.docker.internal:4200")
 public class adminControllor {
 
     private final adminService AdminService;
@@ -26,8 +26,8 @@ public class adminControllor {
 
     @PostMapping(path = "{name}/{email}/{password}")
     public void registerNewAdmin(@PathVariable("name") String name,
-                                 @PathVariable("email") String email,
-                                 @PathVariable("password") String password)
+                                   @PathVariable("email") String email,
+                                   @PathVariable("password") String password)
     {
         admin Admin =new admin(name,email,password);
         AdminService.addNewAdmin(Admin);

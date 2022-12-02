@@ -22,14 +22,11 @@ public class adminService {
         return AdminRepositery.findAll();
     }
 
-    public String addNewAdmin(admin admin) {
+    public void addNewAdmin(admin admin) {
         Optional<admin> found = AdminRepositery.findadminByEmail(admin.getEmail());
         if (!found.isPresent()) {
             AdminRepositery.save(admin);
-            return admin.getName() + " Added Successfully";
         }
-        else
-            return "email is taken";
     }
 
     public String deleteAdmin(Long id){
